@@ -6,6 +6,8 @@
 **Zenodo (this preregistration, PDF):** https://doi.org/10.5281/zenodo.23995668
 **GitHub:** https://github.com/wspaik5/ALP_ttbar_Toy_MC_v1.7_Preregistration_3D_Vertex_Fit
 **Status:** plan only. No v1.7 outcome exists at the time of this commit.
+**Amendment (2026-11-06, before any v1.7 simulation or fit):** variant V-allpixel (Sec. 3.2) and prediction P7 added;
+the first commit of this repository contained the same text without them.
 **PDF version:** same text plus two figures drawn only from analytic formulas and truth-level numbers of the
 published v1.5 samples (no new simulation or fit).
 
@@ -39,6 +41,8 @@ available only for vertices inside the pixel volume.
   Δcotθ, the opening in the r–z plane (e.g. the CMS conversion producer [B1]); low-mass dielectron analyses use the
   orientation of the opening relative to the field, φ_V [B2]. Three-dimensional vertex fitting is standard [B3].
 - **Electron vs. muon displaced vertices** have been compared with a real detector (CMS, 8 TeV [B4]).
+- **All-pixel trackers** are pursued by next-generation concepts such as ALICE 3 [B5] and the FCC-ee detectors [B6];
+  V-allpixel only mimics the z coverage of such trackers in this toy and makes no statement about their performance.
 
 What v1.7 adds is limited to this series: it quantifies, in the preregistered toy of v1.0–v1.6, how much the r–z
 opening recovers the conversion-induced loss in reach for top-associated displaced ALP → e⁺e⁻. No claim of novelty for
@@ -71,6 +75,10 @@ taken from the transverse simulation). The longitudinal random numbers come from
 - Default: the four pixel layers (r = 29, 68, 109, 160 mm) measure z with σ_z = 25 µm; strip layers do not measure z.
 - Variant **V-stereo** (secondary): in addition, stereo strip layers TIB 1–2 (255, 339 mm) measure z with 0.25 mm and
   TOB 1–2 (608, 692 mm) with 0.5 mm.
+- Variant **V-allpixel** (secondary): all 14 layers measure z with σ_z = 25 µm (and r–φ as in the default). The
+  material, the field and the transverse simulation are unchanged. This is a toy stand-in for an all-pixel tracker
+  of the kind pursued by next-generation concepts [B5, B6]; it changes only where z is measured, not the material
+  budget of such trackers, which v1.6 showed to matter separately.
 
 **3.3 Longitudinal fit.** For each hypothesis, after its transverse fit, the transverse path lengths s from the
 fitted vertex to each layer are computed along each fitted track. The r–z fit is then linear least squares:
@@ -94,7 +102,7 @@ These references are used only for validation; the selection threshold k is scan
 
 `scan_v17` = `scan_v15` with Δχ²_3D in place of Δχ² (k ∈ {none, 1, 2, 4, 9, 16, 25, 49}). k = none reproduces the
 v1.6 config R degradation exactly. Reported side by side: Δχ²_T only (= v1.6 R), Δχ²_L only, Δχ²_3D; each with and
-without mass window (V-nomass); and the V-stereo variant for Δχ²_3D.
+without mass window (V-nomass); and the V-stereo and V-allpixel variants for Δχ²_3D.
 
 ## 5. Sanity gate (frozen)
 
@@ -131,16 +139,22 @@ same subsample (127×, 68×, 28×, 8.2×).
   **≥ 60%** at 200 MeV.
 - **P6 (V-stereo, secondary).** Adding stereo z improves the 200 MeV degradation by **at least 10%** relative to the
   default geometry.
+- **P7 (V-allpixel, secondary).** With z measured at every layer, at least 95% of pairs have r–z information, and the
+  17 MeV degradation is **at least 25% lower** than with the default geometry, but **still above 20×**: the r–z
+  opening becomes available for vertices outside the pixel volume, while multiple scattering (about 0.1–0.3 mrad per
+  layer at 10 GeV, comparable to the 0.42 mrad median opening) and the conversion yield remain.
 
 Each prediction is reported as confirmed or refuted against these statements. Refuted predictions are not re-framed.
 
 ## 8. Reporting
 
 v1.7 note with a Figure 11: (a) Δχ²_L distributions for conversions and ALP pairs with the χ²₁ reference; (b)
-degradation versus mass for Δχ²_T only, Δχ²_L only, Δχ²_3D and V-stereo, with the no-brems bound; (c) the fraction of
+degradation versus mass for Δχ²_T only, Δχ²_L only, Δχ²_3D, V-stereo and V-allpixel, with the no-brems bound; (c) the fraction of
 pairs with r–z information and with Δχ²_L > 9 versus vertex radius. The note contains the Z1–Z3 validation, the
 prediction table, "Deviations from preregistration", "Limitations" and "Future directions" (Gaussian-sum filter on top
-of the 3D fit; dimuon control study).
+of the 3D fit; dimuon control study; and, depending on the V-allpixel result, geometry studies such as a first layer
+closer to the beam and an all-pixel tracker with reduced material, combining the v1.6 material result with full z
+coverage).
 
 ## 9. Limitations known in advance
 
@@ -159,3 +173,6 @@ JINST 10 (2015) P08010, arXiv:1502.02702.
 [B3] R. Frühwirth, Application of Kalman filtering to track and vertex fitting, Nucl. Instrum. Meth. A 262 (1987) 444.
 [B4] CMS Collaboration, Search for long-lived particles that decay into final states containing two electrons or two
 muons in proton-proton collisions at √s = 8 TeV, Phys. Rev. D 91 (2015) 052012, arXiv:1411.6977.
+[B5] ALICE Collaboration, Letter of intent for ALICE 3, arXiv:2211.02491.
+[B6] N. Bacchetta et al., CLD – A Detector Concept for the FCC-ee, arXiv:1911.12230; The IDEA detector concept for
+FCC-ee, arXiv:2502.21223.
